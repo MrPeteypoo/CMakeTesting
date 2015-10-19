@@ -1,2 +1,1 @@
-add_subdirectory("Bob")
-add_source_files("Main.cpp")
+add_subdirectory("FireEngine")

@@ -1,5 +1,5 @@
 #include <GLFW/glfw3.h>
-#include <Bob/Bob.hpp>
+#include <FireEngine/Bob/Bob.hpp>
 #include <iostream>
 
 static void error_callback(int error, const char* description)
