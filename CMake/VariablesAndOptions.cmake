@@ -10,7 +10,7 @@ set(LINKERFILES "" CACHE INTERNAL "Linker files")
 
 # User specifiable options.
 option(32BIT "Is the target a 32-bit architecture? This has no effect with MSVC." OFF)
-set(INSTALLDIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Builds" CACHE PATH "Where should compiled executables be placed?")
+set(INSTALLDIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Compiled" CACHE PATH "Where should compiled executables be placed?")
 
 # Utility functions.
 function(set_platform OS)

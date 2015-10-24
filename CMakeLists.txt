@@ -22,7 +22,10 @@ include("CMake/ConfigureLinker.cmake")
 # Add it all together and maintain user specified settings.
 add_executable(FireEngine ${SOURCEFILES})
 target_link_libraries(FireEngine ${LINKERFILES})
-install(TARGETS FireEngine DESTINATION "${INSTALLDIRECTORY}/${PLATFORM}${ARCHITECTURE}${CMAKE_BUILD_TYPE}${COMPILER}")
-message("${LINKERFILES}")
+install(TARGETS FireEngine DESTINATION "${INSTALLDIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Debug" CONFIGURATIONS Debug)
+install(TARGETS FireEngine DESTINATION "${INSTALLDIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}MinSizeRel" CONFIGURATIONS MinSizeRel)
+install(TARGETS FireEngine DESTINATION "${INSTALLDIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Release" CONFIGURATIONS Release)
+install(TARGETS FireEngine DESTINATION "${INSTALLDIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}RelWithDebInfo" CONFIGURATIONS RelWithDebInfo)
+
 # Finally prevent future refreshes from modifying user specified settings.
 set(FIREENGINE_PREVIOUSLY_CONFIGURED ON CACHE INTERNAL "Fire engine previously configured")
