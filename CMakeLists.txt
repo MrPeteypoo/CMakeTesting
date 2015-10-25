@@ -6,8 +6,9 @@ project("Fire Engine")
 
 # We need to create the required global variables and determine the build target.
 include("CMake/VariablesAndOptions.cmake")
+include("CMake/UtilityFunctions.cmake")
 include("CMake/DetermineTarget.cmake")
-message("${PLATFORM} ${ARCHITECTURE} ${COMPILER}")
+
 # Set the default compiler options for various different project types.
 include("CMake/CompilerOptions.cmake")
 
@@ -17,15 +18,21 @@ include_directories("Include")
 
 # Finally gather the source and linker files.
 include("CMake/FindSourceFiles.cmake")
-include("CMake/ConfigureLinker.cmake")
+include("CMake/ConfigureLinkLibraries.cmake")
 
 # Add it all together and maintain user specified settings.
 add_executable(FireEngine ${SOURCEFILES})
+add_dependencies(FireEngine ${DEPENDENCIES})
 target_link_libraries(FireEngine ${LINKERFILES})
-install(TARGETS FireEngine DESTINATION "${INSTALLDIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Debug" CONFIGURATIONS Debug)
-install(TARGETS FireEngine DESTINATION "${INSTALLDIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}MinSizeRel" CONFIGURATIONS MinSizeRel)
-install(TARGETS FireEngine DESTINATION "${INSTALLDIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Release" CONFIGURATIONS Release)
-install(TARGETS FireEngine DESTINATION "${INSTALLDIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}RelWithDebInfo" CONFIGURATIONS RelWithDebInfo)
+install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Debug" CONFIGURATIONS Debug)
+install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}MinSizeRel" CONFIGURATIONS MinSizeRel)
+install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Release" CONFIGURATIONS Release)
+install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}RelWithDebInfo" CONFIGURATIONS RelWithDebInfo)
+
+# Enable testing if specified.
+if (ENABLE_TESTING)
+    add_subdirectory("Testing")
+endif()
 
 # Finally prevent future refreshes from modifying user specified settings.
 set(FIREENGINE_PREVIOUSLY_CONFIGURED ON CACHE INTERNAL "Fire engine previously configured")

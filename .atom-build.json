@@ -1,6 +1,31 @@
 {
+    "name": "Win64Clang Make",
     "cmd": "make",
-    "name": "Windows Debug",
-    "args": [ "windows", "TARGET=debug" ],
-    "sh": false
+    "cwd": "{PROJECT_PATH}/Projects/Win64Clang",
+    "sh": false,
+
+    "targets":
+    {
+        "Win64Clang Install":
+        {
+            "cmd": "make",
+            "args": [ "install" ],
+            "cwd": "{PROJECT_PATH}/Projects/Win64Clang",
+            "sh": false
+        },
+        "Win64Clang Clean":
+        {
+            "cmd": "make",
+            "args": [ "clean", "all" ],
+            "cwd": "{PROJECT_PATH}/Projects/Win64Clang",
+            "sh": false
+        },
+        "Win64Clang Clean Install":
+        {
+            "cmd": "make",
+            "args": [ "clean", "install" ],
+            "cwd": "{PROJECT_PATH}/Projects/Win64Clang",
+            "sh": false
+        }
+    }
 }

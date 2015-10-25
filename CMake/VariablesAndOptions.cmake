@@ -7,10 +7,12 @@ set(ABI "" CACHE INTERNAL "ABI")
 # We shall also store all source and linked files in variables.
 set(SOURCEFILES "" CACHE INTERNAL "Source files")
 set(LINKERFILES "" CACHE INTERNAL "Linker files")
+set(DEPENDENCIES "" CACHE INTERNAL "Dependencies")
 
 # User specifiable options.
 option(32BIT "Is the target a 32-bit architecture? This has no effect with MSVC." OFF)
-set(INSTALLDIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Compiled" CACHE PATH "Where should compiled executables be placed?")
+option(ENABLE_TESTING "Enable unit testing of the engine?" OFF)
+set(INSTALL_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Compiled" CACHE PATH "Where should compiled executables be placed?")
 
 # Utility functions.
 function(set_platform OS)
@@ -44,5 +46,11 @@ endfunction()
 function(add_linker_files)
     foreach(LIBRARY ${ARGN})
         set(LINKERFILES ${LINKERFILES} ${LIBRARY} CACHE INTERNAL "Linker files")
+    endforeach()
+endfunction()
+
+function(add_lib_dependency)
+    foreach(DEPENDENCY ${ARGN})
+        set(DEPENDENCIES ${DEPENDENCIES} ${DEPENDENCY} CACHE INTERNAL "Dependencies")
     endforeach()
 endfunction()
