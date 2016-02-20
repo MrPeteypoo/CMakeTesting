@@ -10,7 +10,7 @@ set(LINKERFILES "" CACHE INTERNAL "Linker files")
 set(DEPENDENCIES "" CACHE INTERNAL "Dependencies")
 
 # User specifiable options.
-option(32BIT "Is the target a 32-bit architecture? This has no effect with MSVC." OFF)
+option(32BIT "Is the target a 32-bit architecture? This determines what libraries to link against." OFF)
 option(ENABLE_TESTING "Enable unit testing of the engine?" OFF)
 set(INSTALL_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Compiled" CACHE PATH "Where should compiled executables be placed?")
 

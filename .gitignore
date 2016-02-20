@@ -1,5 +1,9 @@
 Build/
-Temp/
 Builds/
 Compiled/
+External/*
 Projects/
+Temp/
+.atom-build.json
+!External/README.md
+!External/Include/

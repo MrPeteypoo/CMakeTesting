@@ -12,13 +12,18 @@ include("CMake/DetermineTarget.cmake")
 # Set the default compiler options for various different project types.
 include("CMake/CompilerOptions.cmake")
 
-# Externals are stored in the External folder and headers are located in Include.
+# Headers are located in Include.
 include_directories(SYSTEM "External/Include")
 include_directories("Include")
 
 # Finally gather the source and linker files.
 include("CMake/FindSourceFiles.cmake")
-include("CMake/ConfigureLinkLibraries.cmake")
+include("CMake/ConfigureLibraries.cmake")
+
+# Enable testing if specified.
+if (ENABLE_TESTING)
+    add_subdirectory("Testing")
+endif()
 
 # Add it all together and maintain user specified settings.
 add_executable(FireEngine ${SOURCEFILES})
@@ -28,11 +33,6 @@ install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHIT
 install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}MinSizeRel" CONFIGURATIONS MinSizeRel)
 install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Release" CONFIGURATIONS Release)
 install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}RelWithDebInfo" CONFIGURATIONS RelWithDebInfo)
-
-# Enable testing if specified.
-if (ENABLE_TESTING)
-    add_subdirectory("Testing")
-endif()
 
 # Finally prevent future refreshes from modifying user specified settings.
 set(FIREENGINE_PREVIOUSLY_CONFIGURED ON CACHE INTERNAL "Fire engine previously configured")
