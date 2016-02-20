@@ -1,0 +1,16 @@
+language: cpp
+
+os:
+    - linux
+    - osx
+
+compiler:
+    - gcc
+    - clang
+
+before_script:
+    - mkdir Project
+    - cd Project
+    - cmake .. -DENABLE_TESTING:BOOL=ON
+
+script: scons
