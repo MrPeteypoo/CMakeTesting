@@ -4,7 +4,7 @@ include(ExternalProject)
 # Adds a library to be linked, assuming it can be found with find_package.
 function(required_package SEARCH_FOR LIB_NAME)
     find_package(${SEARCH_FOR} REQUIRED)
-    add_linker_files(${LIB_NAME})
+    add_linker_files(${${LIB_NAME}})
 endfunction()
 
 # Warns the user if a library being linked doesn't exist.

@@ -9,6 +9,7 @@ ExternalProject_Add(external_gmock URL https://googlemock.googlecode.com/files/g
     PREFIX "${CMAKE_CURRENT_BINARY_DIR}/GoogleMock"
     SOURCE_DIR ${GMOCK_DIR}
     BINARY_DIR ${GMOCK_DIR}
+    DOWNLOAD_NO_PROGRESS 1
     INSTALL_COMMAND ""
     CMAKE_ARGS
         -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}

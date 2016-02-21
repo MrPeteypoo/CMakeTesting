@@ -22,7 +22,7 @@ add_external(external_glfw3 GLFW https://github.com/glfw/glfw.git 3.1.2 "include
 
 # All-target libraries go here.
 add_linker_files(glfw3)
-required_package(opengl opengl32)
+required_package(OpenGL OPENGL_LIBRARIES)
 
 # Target-specific libraries go here.
 if ("${PLATFORM}" STREQUAL "Win")
@@ -33,4 +33,13 @@ if ("${PLATFORM}" STREQUAL "Win")
     required_library(gdi32)
     required_library(kernel32)
     required_library(user32)
+
+elseif ("${PLATFORM}" STREQUAL "Linux")
+    required_library(dl)
+    required_library(pthread)
+    required_library(X11)
+    required_library(Xcursor)
+    required_library(Xinerama)
+    required_library(Xrandr)
+    required_library(Xxf86vm)
 endif()
