@@ -15,8 +15,8 @@ echo `cmake --version`
 if [ "$CXX" == "g++" ]; then
 
     # Add required repositories.
-    sudo add-apt-repository -qq ppa:ubuntu-toolchain-r/test
-    sudo apt-get update -qq > /dev/bull
+    sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test > /dev/null
+    sudo apt-get update -q > /dev/bull
 
     # Install compiler specific packages.
     sudo apt-get install gcc-5 -qq
@@ -28,9 +28,9 @@ if [ "$CXX" == "g++" ]; then
 elif [ "$CXX" == "clang++" ]; then
 
     # Add required repositories.
-    sudo add-apt-repository -qq "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.7 main"
+    sudo add-apt-repository -y "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.7 main" > /dev/null
     wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
-    sudo apt-get update -q
+    sudo apt-get update -q > /dev/null
 
     # Install compiler specific packages.
     sudo apt-get install clang-3.7 -qq
