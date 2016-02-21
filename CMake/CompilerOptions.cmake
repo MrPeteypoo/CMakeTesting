@@ -28,19 +28,20 @@ if (NOT FIREENGINE_PREVIOUSLY_CONFIGURED)
     #########################################
     elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         set(CXX_STANDARD "-std=c++14")
+	set(CXX_STDLIB "libc++")
         set(CXX_STATIC "")
         set(CXX_EXTRAS "-pedantic -pedantic-errors")
         set(CXX_WARNINGS "-Weverything")
         set(CXX_DISABLE "-Wno-c++98-compat")
 
-        # On Windows we need to dynamically link libstdc++ because of irritating build issues.
+        # On Windows we need to use libstdc++ because Clang for Windows hates us.
         if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
-            set(CXX_STATIC "")
-            add_linker_files(libstdc++)
+            set(CXX_STDLIB "libstdc++")
+            add_linker_files(${CXX_STDLIB})
             message("You're using Clang on Windows, libstdc++ will be linked dynamically.")
         endif()
 
-        set_cxx_flags("${CXX_STANDARD} ${CXX_STATIC} ${CXX_EXTRAS} ${CXX_WARNINGS} ${CXX_DISABLE}")
+        set_cxx_flags("${CXX_STANDARD} -stdlib=${CXX_STDLIB} ${CXX_STATIC} ${CXX_EXTRAS} ${CXX_WARNINGS} ${CXX_DISABLE}")
         set_debug_flags("-O0 -g")
         set_release_flags("-O4 -DNDEBUG")
 

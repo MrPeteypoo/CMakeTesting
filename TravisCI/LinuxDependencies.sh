@@ -13,6 +13,7 @@ Curl="libcurl4-openssl-dev"
 CMake="cmake-3.4.3"
 GCC="g++-5"
 Clang="clang-3.7"
+LibC++="libc++-dev"
 OpenGL="libgl1-mesa-dev"
 RandR="libxrandr-dev"
 Xinerama="libxinerama-dev"
@@ -58,6 +59,7 @@ elif [ "$CXX" == "clang++" ]; then
     echo "Updating packages..."
     sudo apt-get update -qq
     install $Clang
+    install $LibC++
 fi;
 
 
