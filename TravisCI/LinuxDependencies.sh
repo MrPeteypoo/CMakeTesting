@@ -18,7 +18,6 @@ make > /dev/null
 
 echo "Attempting to upgrade $CMake..."
 sudo make install > /dev/null
-echo `cmake --version`
 
 # Determine the correct compiler to install.
 if [ "$CXX" == "g++" ]; then
@@ -30,7 +29,7 @@ if [ "$CXX" == "g++" ]; then
     sudo apt-get update -qq
 
     echo "Installing $GCC..."
-    sudo apt-get install $GCC -qq
+    sudo apt-get install $GCC -qq &> /dev/null
 
 elif [ "$CXX" == "clang++" ]; then
 
@@ -42,7 +41,7 @@ elif [ "$CXX" == "clang++" ]; then
     sudo apt-get update -qq
 
     echo "Installing $Clang..."
-    sudo apt-get install $Clang -qq
+    sudo apt-get install $Clang -qq &> /dev/null
 fi;
 
 echo "Dependencies processed."
