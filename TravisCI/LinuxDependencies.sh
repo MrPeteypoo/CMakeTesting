@@ -11,7 +11,7 @@ install()
 # Required dependencies.
 Curl="libcurl4-openssl-dev"
 CMake="cmake-3.4.3"
-GCC="gcc-5"
+GCC="g++-5"
 Clang="clang-3.7"
 OpenGL="lib-gl1-mesa-dev"
 RandR="libxrandr-dev"
@@ -20,6 +20,7 @@ Xcursor="libxcursor-dev"
 
 
 # Upgrade the installed CMake version, depends on Curl for OpenSSL support on linux.
+echo "Updating packages..."
 sudo apt-get update -qq
 install $Curl
 
