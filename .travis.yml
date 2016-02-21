@@ -11,6 +11,11 @@ os:
 dist: trusty
 sudo: required
 
+# Allow Mac to fail.
+matrix:
+    allow_failures:
+        - os: osx
+
 # Test both compilers.
 compiler:
     - clang
