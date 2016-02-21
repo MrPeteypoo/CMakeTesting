@@ -1,41 +1,48 @@
 #!/bin/bash
 
-# Install compatible CMake
+# Version requirements here.
 CMake="cmake-3.4.3"
+GCC="gcc-5"
+Clang="clang-3.7"
 
+echo "Downloading $CMake"
 wget -q https://cmake.org/files/v3.4/$CMake.tar.gz
 tar xf $CMake.tar.gz
+
+echo "Configuring CMake..."
 cd $CMake
 cmake . > /dev/null
+
+echo "Attempting to build CMake..."
 make > /dev/null
+
+echo "Attempting to upgrade CMake..."
 sudo make install > /dev/null
 echo `cmake --version`
 
-# Determine the correct compiler to install first.
+# Determine the correct compiler to install.
 if [ "$CXX" == "g++" ]; then
 
-    # Add required repositories.
+    echo "Adding required repositories..."
     sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test > /dev/null
-    sudo apt-get update -q > /dev/bull
 
-    # Install compiler specific packages.
-    sudo apt-get install gcc-5 -qq
+    echo "Updating packages..."
+    sudo apt-get update -qq
 
-    # Ensure the correct compiler is used.
-    export CC="gcc-5"
-    export CXX="g++-5"
+    echo "Installing GCC..."
+    sudo apt-get install $GCC -qq
 
 elif [ "$CXX" == "clang++" ]; then
 
-    # Add required repositories.
+    echo "Adding required repositories..."
+    wget -O -q - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
     sudo add-apt-repository -y "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.7 main" > /dev/null
-    wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
-    sudo apt-get update -q > /dev/null
 
-    # Install compiler specific packages.
-    sudo apt-get install clang-3.7 -qq
+    echo "Updating packages..."
+    sudo apt-get update -qq
 
-    # Ensure the correct compiler is used.
-    export CC="clang-3.7"
-    export CXX="clang++-3.7"
+    echo "Installing Clang..."
+    sudo apt-get install $Clang -qq
 fi;
+
+echo "Dependencies processed."

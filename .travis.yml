@@ -21,6 +21,11 @@ before_install:
     - if [ "$TRAVIS_OS_NAME" == "linux" ]; then ./TravisCI/LinuxDependencies.sh; fi
     - if [ "$TRAVIS_OS_NAME" == "osx" ]; then ./TravisCI/MacDependencies.sh; fi
 
+# Ensure the correct compiler versions are set.
+install:
+    - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$CXX" == "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+    - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$CXX" == "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
+
 # Create the CMake project.
 before_script:
     - mkdir Project
