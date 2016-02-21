@@ -5,18 +5,18 @@ CMake="cmake-3.4.3"
 GCC="gcc-5"
 Clang="clang-3.7"
 
-echo "Downloading $CMake"
+echo "Downloading $CMake..."
 wget -q https://cmake.org/files/v3.4/$CMake.tar.gz
 tar xf $CMake.tar.gz
 
-echo "Configuring CMake..."
+echo "Configuring $CMake..."
 cd $CMake
 cmake . > /dev/null
 
-echo "Attempting to build CMake..."
+echo "Attempting to build $CMake..."
 make > /dev/null
 
-echo "Attempting to upgrade CMake..."
+echo "Attempting to upgrade $CMake..."
 sudo make install > /dev/null
 echo `cmake --version`
 
@@ -29,19 +29,19 @@ if [ "$CXX" == "g++" ]; then
     echo "Updating packages..."
     sudo apt-get update -qq
 
-    echo "Installing GCC..."
+    echo "Installing $GCC..."
     sudo apt-get install $GCC -qq
 
 elif [ "$CXX" == "clang++" ]; then
 
     echo "Adding required repositories..."
-    wget -O -q - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
+    wget -q -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
     sudo add-apt-repository -y "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.7 main" > /dev/null
 
     echo "Updating packages..."
     sudo apt-get update -qq
 
-    echo "Installing Clang..."
+    echo "Installing $Clang..."
     sudo apt-get install $Clang -qq
 fi;
 
