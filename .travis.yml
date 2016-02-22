@@ -30,11 +30,11 @@ before_install:
 install:
     - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$CXX" == "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
     - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$CXX" == "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
-    - if [ "$TRAVIS_OS_NAME" == “osx” ] && [ "$CXX" == "g++" ]; then export CXX=“/usr/local/bin/g++-5" CC=“/usr/local/bin/gcc-5"; fi
-    - if [ "$TRAVIS_OS_NAME" == “osx” ] && [ "$CXX" == “clang++" ]; then export CXX=“/usr/local/bin/clang++-3.7" CC=“/usr/local/bin/clang-3.7"; fi
+    - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$CXX" == "g++" ]; then export CXX="/usr/local/bin/g++-5" CC="/usr/local/bin/gcc-5"; fi
+    - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$CXX" == "clang++" ]; then export CXX="/usr/local/bin/clang++-3.7" CC="/usr/local/bin/clang-3.7"; fi
     - cmake --version
     - $CXX --version
-    - $CC —-version
+    - $CC --version
 
 # Create the CMake project.
 before_script:

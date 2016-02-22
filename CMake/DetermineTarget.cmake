@@ -44,8 +44,8 @@ if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
     endif()
 
 # Mac OS X is supported.
-elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL “Darwin”)
-    set_platform(“OSX”)
+elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL "Darwin")
+    set_platform("OSX")
 
 # Linux is supported.
 elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")
