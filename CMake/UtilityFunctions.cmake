@@ -14,8 +14,14 @@ function(required_library LIB_NAME)
         message("Library ${LIB_NAME} was not found. Compilation may fail.")
         add_linker_files(${LIB_NAME})
     else()
-        add_linker_files(${${LIB_NAME}_lib})
+        # Windows explodes using the result from find_library for whatever reason...
+        if ("${PLATFORM}" STREQUAL "Win")
+            add_linker_files(${LIB_NAME})
+        else()
+            add_linker_files("${${LIB_NAME}_lib}")
+        endif()
     endif()
+
 endfunction()
 
 # Will attempt to download an external dependency if it can not be found. CMAKE_ARGS are set using ${ARGN}.
