@@ -28,7 +28,7 @@ if (NOT FIREENGINE_PREVIOUSLY_CONFIGURED)
     #########################################
     elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         set(CXX_STANDARD "-std=c++14")
-	set(CXX_STDLIB "libc++")
+        set(CXX_STDLIB "libc++")
         set(CXX_STATIC "")
         set(CXX_EXTRAS "-pedantic -pedantic-errors")
         set(CXX_WARNINGS "-Weverything")

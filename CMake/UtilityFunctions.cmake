@@ -12,8 +12,10 @@ function(required_library LIB_NAME)
     find_library (${LIB_NAME}_lib ${LIB_NAME})
     if (NOT ${LIB_NAME}_lib)
         message("Library ${LIB_NAME} was not found. Compilation may fail.")
+        add_linker_files(${LIB_NAME})
+    else()
+        add_linker_files(${${LIB_NAME}_lib})
     endif()
-    add_linker_files(${LIB_NAME})
 endfunction()
 
 # Will attempt to download an external dependency if it can not be found. CMAKE_ARGS are set using ${ARGN}.
