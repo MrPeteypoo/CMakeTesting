@@ -34,7 +34,7 @@ else()
     message("Your compiler may not be supported.")
 endif()
 
-# Windows is obviously supported.
+# Windows is supported.
 if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
     set_platform("Win")
 
@@ -42,6 +42,10 @@ if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
     if ("${COMPILER}" STREQUAL "GCC" OR "${COMPILER}" STREQUAL "Clang")
         set_abi("MinGW-w64")
     endif()
+
+# Mac OS X is supported.
+elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL “Darwin”)
+    set_platform(“OSX”)
 
 # Linux is supported.
 elseif ("${CMAKE_SYSTEM_NAME}" STREQUAL "Linux")

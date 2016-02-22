@@ -6,5 +6,6 @@ External/*
 Projects/
 Temp/
 .atom-build.json
+.DS_Store
 !External/README.md
 !External/Include/

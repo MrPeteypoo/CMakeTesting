@@ -34,6 +34,11 @@ if ("${PLATFORM}" STREQUAL "Win")
     required_library(kernel32)
     required_library(user32)
 
+elseif (“${PLATFORM}” STREQUAL “OSX”)
+    required_package(Cocoa COCOA_LIBRARIES)
+    required_package(IOKit IOKIT_LIBRARIES)
+    required_package(CoreVideo COREVIDEO_LIBRARIES)
+
 elseif ("${PLATFORM}" STREQUAL "Linux")
     required_library(dl)
     required_library(pthread)
