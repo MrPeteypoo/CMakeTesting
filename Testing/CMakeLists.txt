@@ -16,6 +16,7 @@ ExternalProject_Add(external_gmock URL https://googlemock.googlecode.com/files/g
         -DCMAKE_C_COMPILER:PATH=${CMAKE_C_COMPILER}
         -DCMAKE_CXX_COMPILER:PATH=${CMAKE_CXX_COMPILER}
 )
+
 add_lib_dependency(external_gmock)
 
 include_directories(SYSTEM "${GMOCK_DIR}/include")
@@ -23,3 +24,11 @@ include_directories(SYSTEM "${GMOCK_DIR}/gtest/include")
 
 link_directories(${GMOCK_DIR})
 link_directories("${GMOCK_DIR}/gtest")
+
+function(create_test TEST_NAME)
+    add_executable(${TEST_NAME} ${ARGN})
+    target_link_libraries(${TEST_NAME} gtest gmock libstdc++ pthread)
+    add_test(${TEST_NAME} ${TEST_NAME})
+endfunction()
+
+add_subdirectory("FireEngine")
