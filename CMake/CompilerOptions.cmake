@@ -37,8 +37,6 @@ if (NOT FIREENGINE_PREVIOUSLY_CONFIGURED)
         # On Windows we need to use libstdc++ because Clang for Windows hates us.
         if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
             set(CXX_STDLIB "libstdc++")
-            add_linker_files(${CXX_STDLIB})
-            message("You're using Clang on Windows, libstdc++ will be linked dynamically.")
         endif()
 
         set_cxx_flags("${CXX_STANDARD} -stdlib=${CXX_STDLIB} ${CXX_STATIC} ${CXX_EXTRAS} ${CXX_WARNINGS} ${CXX_DISABLE}")

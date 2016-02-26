@@ -28,9 +28,9 @@ if (ENABLE_TESTING)
 endif()
 
 # Add it all together and maintain user specified settings.
-add_executable(FireEngine ${SOURCEFILES})
+add_executable(FireEngine ${SOURCE_FILES})
 add_dependencies(FireEngine ${DEPENDENCIES})
-target_link_libraries(FireEngine ${LINKERFILES})
+target_link_libraries(FireEngine ${LINKER_FILES})
 install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Debug" CONFIGURATIONS Debug)
 install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}MinSizeRel" CONFIGURATIONS MinSizeRel)
 install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Release" CONFIGURATIONS Release)

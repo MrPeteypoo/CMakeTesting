@@ -5,8 +5,8 @@ set(COMPILER "" CACHE INTERNAL "Compiler")
 set(ABI "" CACHE INTERNAL "ABI")
 
 # We shall also store all source and linked files in variables.
-set(SOURCEFILES "" CACHE INTERNAL "Source files")
-set(LINKERFILES "" CACHE INTERNAL "Linker files")
+set(SOURCE_FILES "" CACHE INTERNAL "Source files")
+set(LINKER_FILES "" CACHE INTERNAL "Linker files")
 set(DEPENDENCIES "" CACHE INTERNAL "Dependencies")
 
 # User specifiable options.
@@ -39,13 +39,13 @@ endfunction()
 function(add_source_files)
     foreach(FILE ${ARGN})
         set(FILE "${CMAKE_CURRENT_SOURCE_DIR}/${FILE}")
-        set(SOURCEFILES ${SOURCEFILES} ${FILE} CACHE INTERNAL "Source files")
+        set(SOURCE_FILES ${SOURCE_FILES} ${FILE} CACHE INTERNAL "Source files")
     endforeach()
 endfunction()
 
 function(add_linker_files)
     foreach(LIBRARY ${ARGN})
-        set(LINKERFILES ${LINKERFILES} ${LIBRARY} CACHE INTERNAL "Linker files")
+        set(LINKER_FILES ${LINKER_FILES} ${LIBRARY} CACHE INTERNAL "Linker files")
     endforeach()
 endfunction()
 

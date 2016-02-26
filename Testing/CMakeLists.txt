@@ -27,7 +27,8 @@ link_directories("${GMOCK_DIR}/gtest")
 
 function(create_test TEST_NAME)
     add_executable(${TEST_NAME} ${ARGN})
-    target_link_libraries(${TEST_NAME} gtest gmock libstdc++ pthread)
+    target_link_libraries(${TEST_NAME} gtest_main gmock_main pthread)
+    target_link_libraries(${TEST_NAME} ${LINKER_FILES})
     add_test(${TEST_NAME} ${TEST_NAME})
 endfunction()
 
