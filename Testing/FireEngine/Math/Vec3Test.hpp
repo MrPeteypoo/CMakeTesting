@@ -1,5 +1,7 @@
 #include <FireEngine/Math/Vec3.hpp>
 
+using fire::Vec3;
+
 // Floating-point.
 using Vec3Float = Vec3<float>;
 using Vec3Double = Vec3<double>;
