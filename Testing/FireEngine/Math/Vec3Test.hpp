@@ -1,10 +1,20 @@
-//#include <FireEngine/Math/Vec3.hpp>
-#include <gtest/gtest.h>
+#include <FireEngine/Math/Vec3.hpp>
 
-namespace fire { template<typename T> struct Vec3 {T x, y, z;};}
+// Floating-point.
+using Vec3Float = Vec3<float>;
+using Vec3Double = Vec3<double>;
+using Vec3LDouble = Vec3<long double>;
 
-class Vec3Test : public ::testing::Test
-{
-    protected:
-        fire::Vec3<float> vec3;
-};
+// Signed integers.
+using Vec3Char = Vec3<char>;
+using Vec3Short = Vec3<short>;
+using Vec3Int = Vec3<int>;
+using Vec3Long = Vec3<long>;
+using Vec3LLong = Vec3<long long>;
+
+// Unsigned integers.
+using Vec3UChar = Vec3<unsigned char>;
+using Vec3UShort = Vec3<unsigned short>;
+using Vec3UInt = Vec3<unsigned int>;
+using Vec3ULong = Vec3<unsigned long>;
+using Vec3ULLong = Vec3<unsigned long long>;
