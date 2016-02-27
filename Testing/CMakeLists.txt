@@ -1,3 +1,6 @@
+# Ensure testing is enabled!
+enable_testing()
+
 #add_external_install_disabled(external_gtest "GoogleMock/gtest" https://github.com/google/googletest.git release-1.7.0 "include" "")
 #add_external_install_disabled(external_gmock "GoogleMock" https://github.com/google/googlemock.git release-1.7.0 "include" "")
 
@@ -17,19 +20,38 @@ ExternalProject_Add(external_gmock URL https://googlemock.googlecode.com/files/g
         -DCMAKE_CXX_COMPILER:PATH=${CMAKE_CXX_COMPILER}
 )
 
+# Ensure the Google mocking framework is built first before the engine.
 add_lib_dependency(external_gmock)
 
-include_directories(SYSTEM "${GMOCK_DIR}/include")
-include_directories(SYSTEM "${GMOCK_DIR}/gtest/include")
-
-link_directories(${GMOCK_DIR})
+link_directories("${GMOCK_DIR}")
 link_directories("${GMOCK_DIR}/gtest")
 
+set(CURR_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
 function(create_test TEST_NAME)
+    # Create a target for the test.
     add_executable(${TEST_NAME} ${ARGN})
-    target_link_libraries(${TEST_NAME} gtest_main gmock_main pthread)
+
+    # Include necessary directories.
+    target_include_directories(${TEST_NAME} SYSTEM PUBLIC "${GMOCK_DIR}/include")
+    target_include_directories(${TEST_NAME} SYSTEM PUBLIC "${GMOCK_DIR}/gtest/include")
+    target_include_directories(${TEST_NAME} PUBLIC "${CURR_DIR}")
+
+    # Testing libraries must be linked first.
+    target_link_libraries(${TEST_NAME} gtest_main gmock_main)
+
+    # Turn off annoying warnings which occur due to the testing framework.
+    if ("${COMPILER}" STREQUAL "GCC" OR "${COMPILER}" STREQUAL "Clang")
+        target_compile_options(${TEST_NAME} PUBLIC -Wno-global-constructors -Wno-padded)
+        target_link_libraries(${TEST_NAME} pthread)
+    endif()
+
+    # Add dependencies of the engine.
     target_link_libraries(${TEST_NAME} ${LINKER_FILES})
+
+    # Finally we're ready to add the text!
     add_test(${TEST_NAME} ${TEST_NAME})
 endfunction()
 
+# Finally start creating tests!
 add_subdirectory("FireEngine")

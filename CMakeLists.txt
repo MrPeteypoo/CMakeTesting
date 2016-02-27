@@ -22,8 +22,6 @@ include("CMake/ConfigureLibraries.cmake")
 
 # Enable testing if specified.
 if (ENABLE_TESTING)
-    enable_testing()
-    include_directories("Testing")
     add_subdirectory("Testing")
 endif()
 
