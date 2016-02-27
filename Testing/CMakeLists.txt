@@ -1,6 +1,3 @@
-# Ensure testing is enabled!
-enable_testing()
-
 #add_external_install_disabled(external_gtest "GoogleMock/gtest" https://github.com/google/googletest.git release-1.7.0 "include" "")
 #add_external_install_disabled(external_gmock "GoogleMock" https://github.com/google/googlemock.git release-1.7.0 "include" "")
 
@@ -42,14 +39,14 @@ function(create_test TEST_NAME)
 
     # Turn off annoying warnings which occur due to the testing framework.
     if ("${COMPILER}" STREQUAL "GCC" OR "${COMPILER}" STREQUAL "Clang")
-        target_compile_options(${TEST_NAME} PUBLIC -Wno-global-constructors -Wno-padded)
+        target_compile_options(${TEST_NAME} PUBLIC -Wno-global-constructors)
         target_link_libraries(${TEST_NAME} pthread)
     endif()
 
     # Add dependencies of the engine.
     target_link_libraries(${TEST_NAME} ${LINKER_FILES})
 
-    # Finally we're ready to add the text!
+    # Finally we're ready to add the test!
     add_test(${TEST_NAME} ${TEST_NAME})
 endfunction()
 

@@ -21,12 +21,12 @@ add_external(external_glfw3 GLFW https://github.com/glfw/glfw.git 3.1.2 "include
     -DGLFW_BUILD_TESTS:BOOL=OFF)
 
 # All-target libraries go here.
-add_linker_files(${STDLIB})
 add_linker_files(glfw3)
 required_package(OpenGL OPENGL_LIBRARIES)
 
 # Target-specific libraries go here.
 if ("${PLATFORM}" STREQUAL "Win")
+    add_linker_files(${STDLIB})
     required_library(gdi32)
     required_library(kernel32)
     required_library(user32)

@@ -20,11 +20,6 @@ include_directories("Include")
 include("CMake/FindSourceFiles.cmake")
 include("CMake/ConfigureLibraries.cmake")
 
-# Enable testing if specified.
-if (ENABLE_TESTING)
-    add_subdirectory("Testing")
-endif()
-
 # Add it all together and maintain user specified settings.
 add_executable(FireEngine ${SOURCE_FILES})
 add_dependencies(FireEngine ${DEPENDENCIES})
@@ -33,6 +28,12 @@ install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHIT
 install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}MinSizeRel" CONFIGURATIONS MinSizeRel)
 install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}Release" CONFIGURATIONS Release)
 install(TARGETS FireEngine DESTINATION "${INSTALL_DIRECTORY}/${PLATFORM}${ARCHITECTURE}${COMPILER}RelWithDebInfo" CONFIGURATIONS RelWithDebInfo)
+
+# Enable testing if specified.
+if (ENABLE_TESTING)
+    enable_testing()
+    add_subdirectory("Testing")
+endif()
 
 # Finally prevent future refreshes from modifying user specified settings.
 set(FIREENGINE_PREVIOUSLY_CONFIGURED ON CACHE INTERNAL "Fire engine previously configured")

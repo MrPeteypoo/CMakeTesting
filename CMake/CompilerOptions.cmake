@@ -23,7 +23,6 @@ if (NOT FIREENGINE_PREVIOUSLY_CONFIGURED)
         set(CXX_EXTRAS "-pedantic -pedantic-errors")
         set(CXX_WARNINGS "-Wall -Wextra")
         set(CXX_DISABLE "")
-        set_stdlib(libstdc++)
         set_cxx_flags("${CXX_STANDARD} ${CXX_EXTRAS} ${CXX_WARNINGS} ${CXX_DISABLE}")
 
     #########################################
