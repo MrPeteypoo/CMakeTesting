@@ -15,6 +15,7 @@ ExternalProject_Add(external_gmock URL https://googlemock.googlecode.com/files/g
         -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
         -DCMAKE_C_COMPILER:PATH=${CMAKE_C_COMPILER}
         -DCMAKE_CXX_COMPILER:PATH=${CMAKE_CXX_COMPILER}
+        -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
 )
 
 # Ensure the Google mocking framework is built first before the engine.
