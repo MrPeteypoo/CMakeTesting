@@ -38,14 +38,14 @@ if (NOT FIREENGINE_PREVIOUSLY_CONFIGURED)
         set(CXX_EXTRAS "-pedantic -pedantic-errors")
         set(CXX_WARNINGS "-Weverything")
         set(CXX_DISABLE "-Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded")
-        set_stdlib(libc++)
+        set_stdlib("-stdlib=libc++")
 
         # On Windows we need to use libstdc++ because Clang for Windows hates us.
         if ("${CMAKE_SYSTEM_NAME}" STREQUAL "Windows")
-            set_stdlib(libstdc++)
+            set_stdlib("-stdlib=libstdc++")
         endif()
 
-        set_cxx_flags("${CXX_STANDARD} -stdlib=${STDLIB} ${CXX_STATIC} ${CXX_EXTRAS} ${CXX_WARNINGS} ${CXX_DISABLE}")
+        set_cxx_flags("${CXX_STANDARD} ${STDLIB} ${CXX_STATIC} ${CXX_EXTRAS} ${CXX_WARNINGS} ${CXX_DISABLE}")
         set_debug_flags("-O0 -g")
         set_release_flags("-O4 -DNDEBUG")
 
