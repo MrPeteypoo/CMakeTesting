@@ -6,7 +6,7 @@
 
 namespace fire
 {
-    //
+    
     template <typename T, typename Check>
     constexpr bool is_any_f()
     {
@@ -20,11 +20,7 @@ namespace fire
     }
 
     template <typename T, typename... Args>
-    constexpr bool is_any_v = is_any_f<T, Args...>(); // Ambiguous.
-    //constexpr bool is_any_v = is_any_f<float, Args...>(); // Ambiguous.
-    //constexpr bool is_any_v = is_any_f<float, bool>(); // Ambiguous.
-    //constexpr bool is_any_v = is_any_f<float, bool, char>(); // Ambiguous.
-    //constexpr bool is_any_v = is_any_f<float, bool, char, int>(); // Ambiguous.
+    constexpr bool is_any_v = is_any_f<T, Args...>();
 
     template <typename T>
     constexpr bool is_arithmetic_v = std::is_arithmetic<T>::value;

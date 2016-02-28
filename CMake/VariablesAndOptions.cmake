@@ -3,7 +3,6 @@ set(PLATFORM "" CACHE INTERNAL "Platform")
 set(ARCHITECTURE "" CACHE INTERNAL "Architecture")
 set(COMPILER "" CACHE INTERNAL "Compiler")
 set(ABI "" CACHE INTERNAL "ABI")
-set(STDLIB "" CACHE INTERNAL "STL Implementation")
 
 # We shall also store all source and linked files in variables.
 set(SOURCE_FILES "" CACHE INTERNAL "Source files")
@@ -35,10 +34,6 @@ endfunction()
 function(set_compiler_and_abi TOOL)
     set(COMPILER ${TOOL} CACHE INTERNAL "Compiler")
     set(ABI ${TOOL} CACHE INTERNAL "ABI")
-endfunction()
-
-function(set_stdlib LIB)
-    set(STDLIB ${LIB} CACHE INTERNAL "STL Implementation")
 endfunction()
 
 function(add_source_files)

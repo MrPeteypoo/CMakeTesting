@@ -11,6 +11,10 @@ function(set_release_flags FLAGS)
     set(CMAKE_CXX_FLAGS_RELEASE ${FLAGS} CACHE STRING "Default release flags" FORCE)
 endfunction()
 
+function(set_stdlib LIB)
+    set(STDLIB ${LIB} CACHE INTERNAL "STL Implementation")
+endfunction()
+
 #message("Comp: ${CMAKE_CXX_COMPILER_ID}, Plat: ${CMAKE_SYSTEM_NAME}, MSVC: ${MSVC_VERSION}")
 if (NOT FIREENGINE_PREVIOUSLY_CONFIGURED)
     set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Default build type" FORCE)
